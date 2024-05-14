@@ -96,3 +96,18 @@ x = [a, b, c, d, e, f, g]
 def bot_pole():
     result = random.choice(x)
     return result
+
+
+def def_list_cordinat() -> list:
+    list_cordinat = []
+    i_x = 0
+    for x_list in a:
+        x = i_x
+        i_x += 1
+        i_y = 0
+        for y_list in x_list:
+            y = i_y
+            i_y += 1
+            lis = [x, y]
+            list_cordinat.append(lis.copy())
+    return list_cordinat
