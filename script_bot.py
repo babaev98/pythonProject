@@ -17,21 +17,12 @@ CANSPOLE = [
 
 
 class GamePlayer:
-    def __init__(self, player1=object, player2=object):
-        self.player1 = player1
-        self.player2 = player2
-        self.selected_coordinates = []
-        self.list_cordinat = ls.def_list_cordinat()
+    def __init__(self, player):
+        self.player = player
         self.last_shot = False
 
-    def move_player(self):
+    def move(self):
         cordinat = input("Введите кординаты куда хотите нанести удар? (Слитно)  :")
-        x, y = cordinat[0], cordinat[1]
-        return x, y
-
-    def move_bot(self):
-        cordinat = rd.choice(self.list_cordinat)
-        self.list_cordinat.remove(cordinat)
         x, y = cordinat[0], cordinat[1]
         return x, y
 
@@ -44,4 +35,20 @@ class GamePlayer:
                     break
         return victory
 
-    def logic_bot(self, x=int, y=int):
+
+class GameBot(GamePlayer):
+    def __init__(self, bot):
+        super().__init__(player=bot)
+        self.selected_coordinates = []
+        self.list_cordinat = ls.def_list_cordinat()
+
+    def move(self):
+        cordinat = rd.choice(self.list_cordinat)
+        self.list_cordinat.remove(cordinat)
+        x, y = cordinat[0], cordinat[1]
+        self.selected_coordinates.append(cordinat.copy())
+        return x, y
+
+    def logic_bot(self, pole):
+        coordinates = self.selected_coordinates[len(self.selected_coordinates - 1)]
+        if pole[coordinates[0]][coordinates[1]] == 2:
