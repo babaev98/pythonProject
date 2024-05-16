@@ -1,4 +1,5 @@
 from typing import Type
+
 import list_pole as lp
 
 CANSPOLE = [
@@ -38,18 +39,36 @@ class Player:
         self.pole = self.player_or_bot()
         self.ship = ship_slov
 
+    def striking(self, coordinates):
+        x, y = coordinates
+        if self.pole[x][y] == 1:
+            x_list, y_list = a1.region_ship(x, y, "up")
+            for x_1 in x_list:
+                for y_1 in y_list:
+                    if self.pole[x_1][y_1] == 1:
+                        destroyed = False
+                    else:
+                        destroyed = True
+            if destroyed:
+                self.pole[x][y] = 2
+            else:
+                self.pole[x][y] = 3
+        elif self.pole[x][y] == 0:
+            self.pole[x][y] = 4
+
     def PrinPole(self, pole):
         for i in pole:
             print(i)
 
     def player_or_bot(self):
-        choice = int(input("Если вы хотите выбрать поле сами введите '1', а если хотите рандомное поле то '0'  :"))
-        if choice == 1:
-            self.InstallationPole()
-        elif choice == 0:
-            self.pole = lp.bot_pole()
-            if self.name != "bot":
-                self.PrinPole(self.pole)
+        if self.name != "bot":
+            self.PrinPole(self.pole)
+        else:
+            choice = int(input("Если вы хотите выбрать поле сами введите '1', а если хотите рандомное поле то '0'  :"))
+            if choice == 1:
+                self.InstallationPole()
+            elif choice == 0:
+                self.pole = lp.bot_pole()
         return self.pole
 
     def InstallationPole(self):
@@ -235,5 +254,3 @@ a2 = Ship(2)
 a3 = Ship(3)
 a4 = Ship(4)
 
-p1 = Player("name")
-bot = Player("bot")

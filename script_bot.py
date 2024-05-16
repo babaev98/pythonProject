@@ -2,23 +2,10 @@ import random as rd
 
 import list_pole as ls
 
-CANSPOLE = [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-]
-
 
 class GamePlayer:
-    def __init__(self, player):
-        self.player = player
+    def __init__(self):
+        self.player = "player"
 
     def move(self):
         cordinat = input("Введите кординаты куда хотите нанести удар? (Слитно)  :")
@@ -36,20 +23,44 @@ class GamePlayer:
 
 
 class GameBot(GamePlayer):
-    def __init__(self, bot):
-        super().__init__(player=bot)
+
+    def __init__(self):
+        super().__init__()
+        self.player = "bot"
         self.selected_coordinates = []
-        self.list_coordinat = ls.def_list_cordinat()
-        self.last_shot = False
-        self.list_coordinates = []
+        self.list_coordinates = ls.def_list_cordinat()
+        self.last_shot_destroyed = False
+        self.shooting_target = []
+
     def move(self):
-        cordinat = rd.choice(self.list_coordinat)
-        self.list_coordinat.remove(cordinat)
+        cordinat = rd.choice(self.list_coordinates)
+        self.list_coordinates.remove(cordinat)
         x, y = cordinat[0], cordinat[1]
         self.selected_coordinates.append(cordinat.copy())
         return x, y
 
-    def logic_bot(self, pole):
+    def logic_bot(self, pole, ob=object):
         coordinates_0 = self.selected_coordinates[len(self.selected_coordinates - 1)]
-        if pole[coordinates_0[0]][coordinates_0[1]] == 2:
-            self.
+        x, y = coordinates_0[0], coordinates_0[1]
+        if pole[x][y] == 3:
+            self.shooting_target.clear()
+            self.last_shot_destroyed = True
+        elif pole[x][y] == 2:
+            self.last_shot_destroyed = False
+            list_x_y = []
+            if len(self.shooting_target) == 0:
+                list_x_y.append([x - 1, y])
+                list_x_y.append([x + 1, y])
+                list_x_y.append([x, y - 1])
+                list_x_y.append([x, y + 1])
+            elif len(self.shooting_target) != 0:
+                self.shooting_target.clear()
+                coordinates_1 = self.selected_coordinates[len(self.selected_coordinates - 1)]
+                result = [coordinates_1[0] - coordinates_0[0], coordinates_1[1] - coordinates_0[1]]
+                self.shooting_target.append(result)
+        else:
+            ob()
+
+
+player = GamePlayer()
+bot = GameBot()
