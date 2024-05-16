@@ -9,7 +9,7 @@ class GamePlayer:
 
     def move(self):
         cordinat = input("Введите кординаты куда хотите нанести удар? (Слитно)  :")
-        x, y = cordinat[0], cordinat[1]
+        x, y = int(cordinat[0]), int(cordinat[1])
         return x, y
 
     def victory_check(self, pole=list):
