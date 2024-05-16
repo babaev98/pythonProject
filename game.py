@@ -3,7 +3,9 @@ from script_bot import bot
 from script_bot import player as play
 
 player1 = sc.Player(input("Введите имя первого игрока, если это будет бот то введите :bot   :  "))
+player1.player_or_bot()
 player2 = sc.Player(input("Введите имя первого игрока, если это будет бот то введите :bot   :  "))
+player2.player_or_bot()
 victory = False
 
 

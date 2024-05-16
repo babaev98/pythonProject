@@ -36,7 +36,7 @@ def LenShipObject(key=Type[int]) -> object:
 class Player:
     def __init__(self, name):
         self.name = name
-        self.pole = self.player_or_bot()
+        self.pole = []
         self.ship = ship_slov
 
     def striking(self, coordinates):
