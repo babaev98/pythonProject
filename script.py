@@ -61,8 +61,8 @@ class Player:
             print(i)
 
     def player_or_bot(self):
-        if self.name != "bot":
-            self.PrinPole(self.pole)
+        if self.name == "bot":
+            self.pole = lp.bot_pole()
         else:
             choice = int(input("Если вы хотите выбрать поле сами введите '1', а если хотите рандомное поле то '0'  :"))
             if choice == 1:
