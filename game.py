@@ -21,7 +21,7 @@ def play_or_bot(ob=object) -> object:
 player1.striking(play_or_bot(player1).move())
 player2.striking(play_or_bot(player2).move())
 
-while victory:
+while not victory:
     if play.victory_check(player1.pole):
         print("Победил игрок номер 2")
         break

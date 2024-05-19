@@ -14,11 +14,16 @@ class GamePlayer:
 
     def victory_check(self, pole=list):
         victory = False
+        a = 0
         for x in pole:
-            for y in pole:
+            for y in x:
                 if y == 1:
-                    victory = True
+                    a += 1
                     break
+                if a > 0:
+                    break
+        if a == 0:
+            victory = True
         return victory
 
 
