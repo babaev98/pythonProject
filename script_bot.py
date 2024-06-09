@@ -45,7 +45,7 @@ class GameBot(GamePlayer):
         return x, y
 
     def logic_bot(self, pole, ob=object):
-        coordinates_0 = self.selected_coordinates[len(self.selected_coordinates - 1)]
+        coordinates_0 = self.selected_coordinates[len(self.selected_coordinates) - 1]
         x, y = coordinates_0[0], coordinates_0[1]
         if pole[x][y] == 3:
             self.shooting_target.clear()
