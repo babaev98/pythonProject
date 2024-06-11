@@ -26,6 +26,7 @@ def LisInLis(lis=list) -> Type[list]:
 
 
 def LenShipObject(key=Type[int]) -> object:
+    a1, a2, a3, a4 = object
     slov_comand = {1: a1, 2: a2, 3: a3, 4: a4}
     return slov_comand[key]
 
