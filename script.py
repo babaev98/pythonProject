@@ -248,9 +248,9 @@ class Ship:
                 y_lis.remove(y)
         return x_lis, y_lis
 
-
-a1 = Ship(1)
-a2 = Ship(2)
-a3 = Ship(3)
-a4 = Ship(4)
+def init_ship():
+    a1 = Ship(1)
+    a2 = Ship(2)
+    a3 = Ship(3)
+    a4 = Ship(4)
 

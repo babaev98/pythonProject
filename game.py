@@ -11,7 +11,7 @@ def play_or_bot(ob=object) -> object:
         result = play
     return result
 
-
+sc.init_ship()
 player1 = sc.Player(input("Введите имя первого игрока, если это будет бот то введите :bot   :  "))
 player1.player_or_bot()
 player2 = sc.Player(input("Введите имя первого игрока, если это будет бот то введите :bot   :  "))
