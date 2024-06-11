@@ -29,7 +29,7 @@ while not victory:
         print("Победил игрок номер 1")
         break
     if play_or_bot(player1) == bot:
-        bot.logic_bot(player2.pole, bot.move())
+        bot.logic_bot(player2.pole, bot.move)
     elif play_or_bot(player1) == play:
         player2.striking(play.move())
     player1.PrinPole(player2.pole)
